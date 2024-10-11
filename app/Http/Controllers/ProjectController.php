@@ -7,39 +7,38 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-    // Tạo mới dự án
+
     public function store(Request $request)
     {
         $project = Project::create($request->all());
-        return response()->json(['message' => 'Dự án được tạo thành công', 'project' => $project], 201);
+        return response()->json(['message' => 'Dự án được tạo thành công', 'project' => $project]);
     }
 
-    // Xem danh sách dự án
     public function index()
     {
         $projects = Project::all();
-        return response()->json(['projects' => $projects], 200);
+        return response()->json($projects);
     }
 
-    // Xem chi tiết dự án
+
     public function show($id)
     {
         $project = Project::findOrFail($id);
-        return response()->json($project, 200);
+        return response()->json($project);
     }
 
-    // Cập nhật dự án
+
     public function update(Request $request, $id)
     {
         $project = Project::findOrFail($id);
         $project->update($request->all());
-        return response()->json(['message' => 'Dự án được cập nhật', 'project' => $project], 200);
+        return response()->json(['message' => 'Dự án được cập nhật', 'project' => $project]);
     }
 
-    // Xóa dự án
+
     public function destroy($id)
     {
-        Project::findOrFail($id)->delete();
-        return response()->json(['message' => 'Dự án được xóa'], 200);
+        Project::destroy($id);
+        return response()->json(['message' => 'Dự án được xóa']);
     }
 }

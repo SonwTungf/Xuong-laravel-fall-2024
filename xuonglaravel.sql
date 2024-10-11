@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 08, 2024 at 10:22 AM
+-- Generation Time: Oct 11, 2024 at 02:46 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -161,7 +161,23 @@ INSERT INTO `customers` (`id`, `name`, `address`, `avatar`, `phone`, `email`, `i
 (101, 'Greta Hermiston', '994 Guiseppe Glen Apt. 420\nSouth Kentonmouth, MN 78770-2112', NULL, '1-283-793-6127', 'queen.pagac@hotmail.com', 1, '2024-10-02 05:59:00', '2024-10-02 05:59:00', NULL, NULL),
 (102, 'Tung12345', '91 cầu diễn', 'customers/IdxspWsjpBQgVL2AsXZz4lAf17s0j8BKQTDiTdDl.jpg', '08759756543', 'ahihi123ee@gmail.com', 1, '2024-10-02 05:59:21', '2024-10-02 06:32:48', '2024-10-02 06:32:48', NULL),
 (103, 'Tung12345', '91 cầu diễn', 'customers/dYQ0YcN7XGUp2CdFNcNA3EtoZn7fE3YA2wdwKq4Y.jpg', '07953415151', 'ahihi123ee@gmail.com', 1, '2024-10-02 06:01:49', '2024-10-02 06:32:45', '2024-10-02 06:32:45', NULL),
-(104, 'Tung12345', '91 cầu diễn', 'customers/zSmsEi4SPYjJNZcCKHFWWvkbJUan1qIEaOSQY3hl.jpg', '079534151555', 'ahihi123ee@gmail.com', 1, '2024-10-02 06:09:53', '2024-10-02 06:09:53', NULL, NULL);
+(104, 'Tung12345', '91 cầu diễn', 'customers/zSmsEi4SPYjJNZcCKHFWWvkbJUan1qIEaOSQY3hl.jpg', '079534151555', 'ahihi123ee@gmail.com', 1, '2024-10-02 06:09:53', '2024-10-02 06:09:53', NULL, NULL),
+(105, 'dffgchcv', '12', 'customers/E3NC3Xr0zSHw4J4u967E0DWHaOProNpQcgSN6d8j.jpg', '015687645', 'st@gmail.com', 1, '2024-10-09 22:59:29', '2024-10-09 22:59:29', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `expenses`
+--
+
+CREATE TABLE `expenses` (
+  `id` bigint UNSIGNED NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `expense_date` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -177,6 +193,25 @@ CREATE TABLE `failed_jobs` (
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `financial_reports`
+--
+
+CREATE TABLE `financial_reports` (
+  `id` bigint UNSIGNED NOT NULL,
+  `month` int NOT NULL,
+  `year` int NOT NULL,
+  `total_sales` decimal(10,2) NOT NULL,
+  `total_expenses` decimal(10,2) NOT NULL,
+  `profit_before_tax` decimal(10,2) NOT NULL,
+  `tax_amount` decimal(10,2) NOT NULL,
+  `profit_after_tax` decimal(10,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -205,7 +240,15 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2014_10_12_100000_create_password_resets_table', 2),
 (8, '2024_10_03_022923_create_category_posts_table', 2),
 (9, '2024_10_07_084130_add_password_to_customers_table', 2),
-(10, '2024_10_07_090037_users', 3);
+(10, '2024_10_07_090037_users', 3),
+(11, '2024_10_10_074937_create_projects_table', 4),
+(12, '2024_10_10_074938_create_tasks_table', 4),
+(13, '2024_10_10_092415_create_sales_table', 5),
+(14, '2024_10_10_092440_create_expenses_table', 5),
+(15, '2024_10_10_092446_create_financial_reports_table', 5),
+(16, '2024_10_10_092450_create_products_table', 5),
+(17, '2024_10_10_092457_create_taxes_table', 6),
+(18, '2024_10_11_125212_create_phones_table', 6);
 
 -- --------------------------------------------------------
 
@@ -231,6 +274,13 @@ CREATE TABLE `password_reset_tokens` (
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `password_reset_tokens`
+--
+
+INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
+('ahihi123ee@gmail.com', '$2y$12$M7SXCiwJKJTj1NlQpa8NWeb.KfayXPsBEMeRDfWBovxAP6pI03oJ6', '2024-10-08 23:58:15');
+
 -- --------------------------------------------------------
 
 --
@@ -246,6 +296,127 @@ CREATE TABLE `personal_access_tokens` (
   `abilities` text COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `personal_access_tokens`
+--
+
+INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `expires_at`, `created_at`, `updated_at`) VALUES
+(1, 'App\\Models\\User', 13, 'xuonglaravel', '806365accf23a41b5511e0038eebdfe16b497baa9d3c116e49c86dcbbca7f35b', '[\"*\"]', NULL, NULL, '2024-10-10 05:41:41', '2024-10-10 05:41:41'),
+(3, 'App\\Models\\User', 14, 'xuonglaravel', '32865ba9e4bb1d7ce7f8b2e2f8365c29592240e95806b8056dee121851256bd9', '[\"*\"]', NULL, NULL, '2024-10-10 06:45:24', '2024-10-10 06:45:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `phones`
+--
+
+CREATE TABLE `phones` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `value` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `phones`
+--
+
+INSERT INTO `phones` (`id`, `user_id`, `value`, `created_at`, `updated_at`) VALUES
+(1, 12, '559.873.4779', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
+(2, 11, '+19853895858', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
+(3, 7, '+1 (973) 541-4973', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
+(4, 2, '430-554-9140', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
+(5, 9, '+1-283-543-5371', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
+(6, 6, '+1-386-602-7378', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
+(7, 8, '(949) 516-6676', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
+(8, 3, '+1-573-326-4133', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
+(9, 1, '+1-832-978-4154', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
+(10, 4, '949.984.7195', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
+(11, 5, '+1-203-314-3542', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
+(12, 10, '351-529-8400', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
+(13, 13, '682.302.2267', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
+(14, 14, '801.524.9483', '2024-10-11 06:19:15', '2024-10-11 06:19:15');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `projects`
+--
+
+CREATE TABLE `projects` (
+  `id` bigint UNSIGNED NOT NULL,
+  `project_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `start_date` date DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `projects`
+--
+
+INSERT INTO `projects` (`id`, `project_name`, `description`, `start_date`, `created_at`, `updated_at`) VALUES
+(1, '123a', '123', '2024-10-10', '2024-10-11 07:37:05', '2024-10-11 07:37:05'),
+(2, '123a123', '123123', '2024-10-10', '2024-10-11 07:41:18', '2024-10-11 07:41:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sales`
+--
+
+CREATE TABLE `sales` (
+  `id` bigint UNSIGNED NOT NULL,
+  `product_id` bigint UNSIGNED NOT NULL,
+  `quantity` int NOT NULL,
+  `price` decimal(15,2) NOT NULL,
+  `tax` decimal(15,2) NOT NULL,
+  `total` decimal(15,2) NOT NULL,
+  `sale_date` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tasks`
+--
+
+CREATE TABLE `tasks` (
+  `id` bigint UNSIGNED NOT NULL,
+  `task_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Chưa bắt đầu',
+  `project_id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tasks`
+--
+
+INSERT INTO `tasks` (`id`, `task_name`, `description`, `status`, `project_id`, `created_at`, `updated_at`) VALUES
+(1, 'nv1', '123', 'Chua Bat Dau', 1, '2024-10-11 07:38:38', '2024-10-11 07:38:38'),
+(2, 'nv1', '123123', 'Chua Bat Dau', 1, '2024-10-11 07:41:37', '2024-10-11 07:41:37');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `taxes`
+--
+
+CREATE TABLE `taxes` (
+  `id` bigint UNSIGNED NOT NULL,
+  `tax_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rate` decimal(5,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -283,7 +454,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (9, 'Darrick Zieme IV', 'dean99@example.org', '2024-10-07 02:07:33', '$2y$12$xxLKDvGWY6CKAv4G3gjZn.8IwPlZrhHmYZkpTAZBYHirpD/XvLDTy', 'kzZCWSo9hT', '2024-10-07 02:07:33', '2024-10-07 02:07:33'),
 (10, 'Mr. Sheldon Ankunding DVM', 'tjohnston@example.com', '2024-10-07 02:07:33', '$2y$12$xxLKDvGWY6CKAv4G3gjZn.8IwPlZrhHmYZkpTAZBYHirpD/XvLDTy', '09xLCFEkos', '2024-10-07 02:07:33', '2024-10-07 02:07:33'),
 (11, 'Tung12345', 'ahihi123ee@gmail.com', NULL, '$2y$12$Ssduvm32g3tn0OxCmM6Aneg.jW.HBtCECticdbHSxESmoy3IZ.qPK', NULL, '2024-10-07 02:08:41', '2024-10-07 02:08:41'),
-(12, 'ahihi123ee@gmail.com', 'ahihi1234ee@gmail.com', NULL, '$2y$12$mO04hjOnvrt9rwcg2dUSaelqTplACf6BvLwn62dsA6rtOr5snOobW', NULL, '2024-10-07 02:16:05', '2024-10-07 02:16:05');
+(12, 'ahihi123ee@gmail.com', 'ahihi1234ee@gmail.com', NULL, '$2y$12$mO04hjOnvrt9rwcg2dUSaelqTplACf6BvLwn62dsA6rtOr5snOobW', NULL, '2024-10-07 02:16:05', '2024-10-07 02:16:05'),
+(13, 'tung', 'tung@gmail.com', NULL, '$2y$12$qE.ayfiJRB6sA04B1Xbmp.6kW.QJ/bSHm1P.cgtks.KBNaGh1eRj2', NULL, '2024-10-10 05:41:41', '2024-10-10 05:41:41'),
+(14, 'tung1', 'tung1@gmail.com', NULL, '$2y$12$xX1XKTV.yKqUd7/3RMQa8O0jxOjyESxb..18ZgBhENDVDEO9ZQRsS', NULL, '2024-10-10 05:51:46', '2024-10-10 05:51:46');
 
 --
 -- Indexes for dumped tables
@@ -303,11 +476,23 @@ ALTER TABLE `customers`
   ADD UNIQUE KEY `customers_phone_unique` (`phone`);
 
 --
+-- Indexes for table `expenses`
+--
+ALTER TABLE `expenses`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `financial_reports`
+--
+ALTER TABLE `financial_reports`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -336,6 +521,38 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `phones`
+--
+ALTER TABLE `phones`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `phones_user_id_unique` (`user_id`);
+
+--
+-- Indexes for table `projects`
+--
+ALTER TABLE `projects`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sales`
+--
+ALTER TABLE `sales`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tasks`
+--
+ALTER TABLE `tasks`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tasks_project_id_foreign` (`project_id`);
+
+--
+-- Indexes for table `taxes`
+--
+ALTER TABLE `taxes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -356,7 +573,13 @@ ALTER TABLE `category_posts`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+
+--
+-- AUTO_INCREMENT for table `expenses`
+--
+ALTER TABLE `expenses`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -365,22 +588,74 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `financial_reports`
+--
+ALTER TABLE `financial_reports`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `phones`
+--
+ALTER TABLE `phones`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `projects`
+--
+ALTER TABLE `projects`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `sales`
+--
+ALTER TABLE `sales`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tasks`
+--
+ALTER TABLE `tasks`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `taxes`
+--
+ALTER TABLE `taxes`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `phones`
+--
+ALTER TABLE `phones`
+  ADD CONSTRAINT `phones_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `tasks`
+--
+ALTER TABLE `tasks`
+  ADD CONSTRAINT `tasks_project_id_foreign` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

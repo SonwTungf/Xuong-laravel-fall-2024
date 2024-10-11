@@ -4,6 +4,8 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CustomerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +31,21 @@ Route::middleware('auth:sanctum')
         });
 
         Route::post('logout', [AuthController::class, 'logout']);
-        
     });
 
 
 route::apiResource('customers', CustomerController::class);
+
+
+
+Route::get('/projects', [ProjectController::class, 'index']);
+Route::post('/projects', [ProjectController::class, 'store']);
+Route::get('/projects/{id}', [ProjectController::class, 'show']);
+Route::put('/projects/{id}', [ProjectController::class, 'update']);
+Route::delete('/projects/{id}', [ProjectController::class, 'destroy']);
+
+Route::get('/projects/{id}/tasks', [TaskController::class, 'index']);
+Route::post('/projects/{id}/tasks', [TaskController::class, 'store']);
+Route::get('/projects/{id}/tasks/{taskId}', [TaskController::class, 'show']);
+Route::put('/projects/{id}/tasks/{taskId}', [TaskController::class, 'update']);
+Route::delete('/projects/{id}/tasks/{taskId}', [TaskController::class, 'destroy']);

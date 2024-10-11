@@ -10,6 +10,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Middleware\Authenticate;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -43,6 +44,11 @@ Auth::routes();
 
 Route::delete('customers/{customers}/forceDestroy', [CustomerController::class, 'forceDestroy'])
     ->name('customers.forceDestroy');
+
+Route::get('/users', function () {
+    $data = User::paginate();
+    return view('user-list', compact('data'));
+});
 
 // Route::get('session', function () {
 //     session()->put('orders.101', [
@@ -172,6 +178,3 @@ Route::post('/transaction/process', [TransactionController::class, 'processTrans
 Route::post('/transaction/complete', [TransactionController::class, 'completeTransaction'])->name('transaction.complete');
 Route::post('/transaction/cancel', [TransactionController::class, 'cancelTransaction'])->name('transaction.cancel');
 Route::get('/transaction/resume', [TransactionController::class, 'resumeTransaction'])->name('transaction.resume');
-
-Route::apiResource('projects', ProjectController::class);
-Route::apiResource('projects.tasks', TaskController::class);

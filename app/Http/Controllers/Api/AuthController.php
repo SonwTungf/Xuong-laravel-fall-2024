@@ -47,16 +47,15 @@ class AuthController extends Controller
         $token = $user->createToken(env('SANCTUM_NAME'))->plainTextToken;
         return response()->json(['token' => $token]);
     }
-    public function logout()
+    public function logout(Request $request)
     {
 
-        /**
-         * @var User $user
-         */
-        $user = request()->user();
+        if ($request->type == 'all') {
+            $request->user()->tokens()->delete();
+        } else {
+            $request->user()->currentAccessToken()->delete();
+        }
 
-        $user->currentAccessToken()->delete();
-
-        return  response()->json([], 204);
+        return response()->noContent();
     }
 }
