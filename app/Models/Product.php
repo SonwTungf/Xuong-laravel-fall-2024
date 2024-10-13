@@ -10,6 +10,7 @@ class Product extends Model
     use HasFactory;
     protected $fillable = ['name', 'price'];
 
+    // Mối quan hệ với bảng sales
     public function sales()
     {
         return $this->hasMany(Sale::class);

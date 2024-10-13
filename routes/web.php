@@ -1,12 +1,16 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Financial_ReportController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PassportController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\StudentsSubjectController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Middleware\Authenticate;
@@ -128,22 +132,23 @@ Route::get('/users', function () {
 
 //Buoi 2
 
-// Route::get('/doanhthu', function () {
-//     $sales = DB::table('sales')
-//         ->selectRaw('SUM(total) as total_sales, MONTH(sale_date) as month, YEAR(sale_date) as year')
-//         ->groupBy(DB::raw('MONTH(sale_date)'), DB::raw('YEAR(sale_date)'))
-//         ->get();
-//     dd($sales);
-// });
+Route::get('/doanhthu', function () {
+    $sales = DB::table('sales')
+        ->selectRaw('SUM(total) as total_sales, MONTH(sale_date) as month, YEAR(sale_date) as year')
+        ->groupBy(DB::raw('MONTH(sale_date)'), DB::raw('YEAR(sale_date)'))
+        ->get();
+    dd($sales);
+});
 
-// Route::get('/chiphi', function () {
-//     $expenses = DB::table('expenses')
-//         ->selectRaw('SUM(amount) as total_expenses, MONTH(expense_date) as month, YEAR(expense_date) as year')
-//         ->groupBy(DB::raw('MONTH(expense_date)'), DB::raw('YEAR(expense_date)'))
-//         ->get();
-//     dd($expenses);
-// });
-// Route::get('/generate-financial-report', [Financial_ReportController::class, 'generateFinancialReport']);
+Route::get('/chiphi', function () {
+    $expenses = DB::table('expenses')
+        ->selectRaw('SUM(amount) as total_expenses, MONTH(expense_date) as month, YEAR(expense_date) as year')
+        ->groupBy(DB::raw('MONTH(expense_date)'), DB::raw('YEAR(expense_date)'))
+        ->get();
+    dd($expenses);
+});
+Route::get('/generate-financial-report', [Financial_ReportController::class, 'generateFinancialReport']);
+
 
 // //Buoi 4
 // Route::get('/19Phim', [MovieController::class, 'index'])->middleware('kiemtratuoi');
@@ -178,3 +183,10 @@ Route::post('/transaction/process', [TransactionController::class, 'processTrans
 Route::post('/transaction/complete', [TransactionController::class, 'completeTransaction'])->name('transaction.complete');
 Route::post('/transaction/cancel', [TransactionController::class, 'cancelTransaction'])->name('transaction.cancel');
 Route::get('/transaction/resume', [TransactionController::class, 'resumeTransaction'])->name('transaction.resume');
+
+
+Route::resource('students', StudentsSubjectController::class);
+Route::resource('classrooms', ClassroomController::class);
+Route::resource('subjects', SubjectController::class);
+Route::resource('passports', PassportController::class);
+Route::resource('students_subjects', StudentsSubjectController::class);

@@ -9,18 +9,19 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('taxes', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('tax_name', 100);
-            $table->decimal('rate', 5, 2);
+        Schema::create('classrooms', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
-        Schema::dropIfExists('taxes');
+        Schema::dropIfExists('classrooms');
     }
 };

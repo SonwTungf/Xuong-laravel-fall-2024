@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Expense;
 use App\Models\Financial_Report;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Sale;
 use App\Models\Tax;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Financial_ReportController extends Controller
 {

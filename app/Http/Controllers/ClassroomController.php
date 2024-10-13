@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CategoryPost;
+use App\Models\classroom;
 use Illuminate\Http\Request;
 
-class CategoryPostController extends Controller
+class ClassroomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class CategoryPostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CategoryPost $categoryPost)
+    public function show(classroom $classroom)
     {
         //
     }
@@ -42,7 +42,7 @@ class CategoryPostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CategoryPost $categoryPost)
+    public function edit(classroom $classroom)
     {
         //
     }
@@ -50,7 +50,7 @@ class CategoryPostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CategoryPost $categoryPost)
+    public function update(Request $request, classroom $classroom)
     {
         //
     }
@@ -58,7 +58,7 @@ class CategoryPostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CategoryPost $categoryPost)
+    public function destroy(classroom $classroom)
     {
         //
     }

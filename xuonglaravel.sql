@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 11, 2024 at 02:46 PM
+-- Generation Time: Oct 13, 2024 at 09:12 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -28,6 +28,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `category_posts` (
+  `id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `classrooms`
+--
+
+CREATE TABLE `classrooms` (
   `id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -179,6 +191,28 @@ CREATE TABLE `expenses` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `expenses`
+--
+
+INSERT INTO `expenses` (`id`, `description`, `amount`, `expense_date`, `created_at`, `updated_at`) VALUES
+(1, 'Nhập hàng tháng 9', '5000000.00', '2024-09-05', '2024-10-12 05:37:46', '2024-10-12 05:37:46'),
+(10, 'Chi phí vận chuyển', '1000000.00', '2024-09-06', '2024-10-12 05:45:11', '2024-10-12 05:45:11'),
+(11, 'bao? hanh', '800000.00', '2024-09-05', '2024-10-12 05:45:11', '2024-10-12 05:45:11'),
+(12, 'luong nv thang 9', '12000000.00', '2024-10-12', '2024-10-12 05:45:11', '2024-09-05 17:00:00'),
+(13, 'Nhập hàng tháng 9', '5000000.00', '2024-09-05', '2024-10-13 02:04:07', '2024-10-13 02:04:07'),
+(14, 'Chi phí vận chuyển', '1000000.00', '2024-09-06', '2024-10-13 02:04:07', '2024-10-13 02:04:07'),
+(15, 'bao? hanh', '800000.00', '2024-09-05', '2024-10-13 02:04:07', '2024-10-13 02:04:07'),
+(16, 'luong nv thang 9', '1000000.00', '2024-10-13', '2024-10-13 02:04:07', '2024-09-05 17:00:00'),
+(17, 'Nhập hàng tháng 9', '5000000.00', '2024-09-05', '2024-10-13 02:05:12', '2024-10-13 02:05:12'),
+(18, 'Chi phí vận chuyển', '1000000.00', '2024-09-06', '2024-10-13 02:05:12', '2024-10-13 02:05:12'),
+(19, 'bao? hanh', '800000.00', '2024-09-05', '2024-10-13 02:05:12', '2024-10-13 02:05:12'),
+(20, 'luong nv thang 9', '1000000.00', '2024-10-13', '2024-10-13 02:05:12', '2024-09-05 17:00:00'),
+(21, 'Nhập hàng tháng 9', '5000000.00', '2024-09-05', '2024-10-13 02:06:58', '2024-10-13 02:06:58'),
+(22, 'Chi phí vận chuyển', '1000000.00', '2024-09-06', '2024-10-13 02:06:58', '2024-10-13 02:06:58'),
+(23, 'bao? hanh', '800000.00', '2024-09-05', '2024-10-13 02:06:58', '2024-10-13 02:06:58'),
+(24, 'luong nv thang 9', '1000000.00', '2024-10-13', '2024-10-13 02:06:58', '2024-09-05 17:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -214,6 +248,16 @@ CREATE TABLE `financial_reports` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `financial_reports`
+--
+
+INSERT INTO `financial_reports` (`id`, `month`, `year`, `total_sales`, `total_expenses`, `profit_before_tax`, `tax_amount`, `profit_after_tax`, `created_at`, `updated_at`) VALUES
+(3, 9, 2024, '32000000.00', '18800000.00', '13200000.00', '3200000.00', '10000000.00', '2024-10-12 05:45:11', '2024-10-12 05:45:11'),
+(4, 9, 2024, '32000000.00', '18800000.00', '13200000.00', '32000000.00', '10000000.00', '2024-10-13 02:04:07', '2024-10-13 02:04:07'),
+(5, 9, 2024, '32000000.00', '18800000.00', '13200000.00', '32000000.00', '10000000.00', '2024-10-13 02:05:12', '2024-10-13 02:05:12'),
+(6, 9, 2024, '32000000.00', '18800000.00', '13200000.00', '32000000.00', '10000000.00', '2024-10-13 02:06:58', '2024-10-13 02:06:58');
+
 -- --------------------------------------------------------
 
 --
@@ -246,9 +290,25 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (13, '2024_10_10_092415_create_sales_table', 5),
 (14, '2024_10_10_092440_create_expenses_table', 5),
 (15, '2024_10_10_092446_create_financial_reports_table', 5),
-(16, '2024_10_10_092450_create_products_table', 5),
-(17, '2024_10_10_092457_create_taxes_table', 6),
-(18, '2024_10_11_125212_create_phones_table', 6);
+(25, '2024_10_10_092450_create_products_table', 6),
+(26, '2024_10_10_092457_create_taxes_table', 6),
+(27, '2024_10_11_125212_create_phones_table', 6),
+(28, '2024_10_13_084250_create_classrooms_table', 7),
+(29, '2024_10_13_084259_create_subjects_table', 7),
+(30, '2024_10_13_084306_create_passports_table', 7),
+(31, '2024_10_13_084313_create_students_subjects_table', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `passports`
+--
+
+CREATE TABLE `passports` (
+  `id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -322,25 +382,41 @@ CREATE TABLE `phones` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `phones`
+-- Table structure for table `products`
 --
 
-INSERT INTO `phones` (`id`, `user_id`, `value`, `created_at`, `updated_at`) VALUES
-(1, 12, '559.873.4779', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
-(2, 11, '+19853895858', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
-(3, 7, '+1 (973) 541-4973', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
-(4, 2, '430-554-9140', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
-(5, 9, '+1-283-543-5371', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
-(6, 6, '+1-386-602-7378', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
-(7, 8, '(949) 516-6676', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
-(8, 3, '+1-573-326-4133', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
-(9, 1, '+1-832-978-4154', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
-(10, 4, '949.984.7195', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
-(11, 5, '+1-203-314-3542', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
-(12, 10, '351-529-8400', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
-(13, 13, '682.302.2267', '2024-10-11 06:19:15', '2024-10-11 06:19:15'),
-(14, 14, '801.524.9483', '2024-10-11 06:19:15', '2024-10-11 06:19:15');
+CREATE TABLE `products` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `price`, `created_at`, `updated_at`) VALUES
+(1, 'Bàn gỗ', '2000000.00', '2024-10-12 05:45:11', '2024-10-12 05:45:11'),
+(2, 'Ghế xoay', '1500000.00', '2024-10-12 05:45:11', '2024-10-12 05:45:11'),
+(3, 'Tủ quần áo', '5000000.00', '2024-10-12 05:45:11', '2024-10-12 05:45:11'),
+(4, 'Giường ngủ', '8000000.00', '2024-10-12 05:45:11', '2024-10-12 05:45:11'),
+(5, 'Bàn gỗ', '2000000.00', '2024-10-13 02:04:07', '2024-10-13 02:04:07'),
+(6, 'Ghế xoay', '1500000.00', '2024-10-13 02:04:07', '2024-10-13 02:04:07'),
+(7, 'Tủ quần áo', '5000000.00', '2024-10-13 02:04:07', '2024-10-13 02:04:07'),
+(8, 'Giường ngủ', '8000000.00', '2024-10-13 02:04:07', '2024-10-13 02:04:07'),
+(9, 'Bàn gỗ', '2000000.00', '2024-10-13 02:05:12', '2024-10-13 02:05:12'),
+(10, 'Ghế xoay', '1500000.00', '2024-10-13 02:05:12', '2024-10-13 02:05:12'),
+(11, 'Tủ quần áo', '5000000.00', '2024-10-13 02:05:12', '2024-10-13 02:05:12'),
+(12, 'Giường ngủ', '8000000.00', '2024-10-13 02:05:12', '2024-10-13 02:05:12'),
+(13, 'Bàn gỗ', '2000000.00', '2024-10-13 02:06:58', '2024-10-13 02:06:58'),
+(14, 'Ghế xoay', '1500000.00', '2024-10-13 02:06:58', '2024-10-13 02:06:58'),
+(15, 'Tủ quần áo', '5000000.00', '2024-10-13 02:06:58', '2024-10-13 02:06:58'),
+(16, 'Giường ngủ', '8000000.00', '2024-10-13 02:06:58', '2024-10-13 02:06:58');
 
 -- --------------------------------------------------------
 
@@ -383,6 +459,52 @@ CREATE TABLE `sales` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `sales`
+--
+
+INSERT INTO `sales` (`id`, `product_id`, `quantity`, `price`, `tax`, `total`, `sale_date`, `created_at`, `updated_at`) VALUES
+(9, 1, 3, '2000000.00', '600000.00', '6600000.00', '2024-09-15', '2024-10-12 05:45:11', '2024-10-12 05:45:11'),
+(10, 2, 2, '1500000.00', '300000.00', '3300000.00', '2024-09-16', '2024-10-12 05:45:11', '2024-10-12 05:45:11'),
+(11, 3, 1, '5000000.00', '500000.00', '5500000.00', '2024-09-15', '2024-10-12 05:45:11', '2024-10-12 05:45:11'),
+(12, 4, 2, '8000000.00', '1600000.00', '17600000.00', '2024-09-16', '2024-10-12 05:45:11', '2024-10-12 05:45:11'),
+(13, 1, 3, '2000000.00', '660000.00', '6600000.00', '2024-09-15', '2024-10-13 02:04:07', '2024-10-13 02:04:07'),
+(14, 2, 2, '1500000.00', '330000.00', '7500000.00', '2024-09-16', '2024-10-13 02:04:07', '2024-10-13 02:04:07'),
+(15, 3, 1, '2000000.00', '660000.00', '6600000.00', '2024-09-15', '2024-10-13 02:04:07', '2024-10-13 02:04:07'),
+(16, 4, 2, '1500000.00', '330000.00', '7500000.00', '2024-09-16', '2024-10-13 02:04:07', '2024-10-13 02:04:07'),
+(17, 1, 3, '2000000.00', '660000.00', '6600000.00', '2024-09-15', '2024-10-13 02:05:12', '2024-10-13 02:05:12'),
+(18, 2, 2, '1500000.00', '330000.00', '7500000.00', '2024-09-16', '2024-10-13 02:05:12', '2024-10-13 02:05:12'),
+(19, 3, 1, '2000000.00', '660000.00', '6600000.00', '2024-09-15', '2024-10-13 02:05:12', '2024-10-13 02:05:12'),
+(20, 4, 2, '1500000.00', '330000.00', '7500000.00', '2024-09-16', '2024-10-13 02:05:12', '2024-10-13 02:05:12'),
+(21, 1, 3, '2000000.00', '660000.00', '6600000.00', '2024-09-15', '2024-10-13 02:06:58', '2024-10-13 02:06:58'),
+(22, 2, 2, '1500000.00', '330000.00', '7500000.00', '2024-09-16', '2024-10-13 02:06:58', '2024-10-13 02:06:58'),
+(23, 3, 1, '2000000.00', '660000.00', '6600000.00', '2024-09-15', '2024-10-13 02:06:58', '2024-10-13 02:06:58'),
+(24, 4, 2, '1500000.00', '330000.00', '7500000.00', '2024-09-16', '2024-10-13 02:06:58', '2024-10-13 02:06:58');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `students_subjects`
+--
+
+CREATE TABLE `students_subjects` (
+  `id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subjects`
+--
+
+CREATE TABLE `subjects` (
+  `id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- --------------------------------------------------------
 
 --
@@ -420,6 +542,16 @@ CREATE TABLE `taxes` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `taxes`
+--
+
+INSERT INTO `taxes` (`id`, `tax_name`, `rate`, `created_at`, `updated_at`) VALUES
+(1, 'VAT', '10.00', '2024-10-12 05:45:11', '2024-10-12 05:45:11'),
+(2, 'VAT', '10.00', '2024-10-13 02:04:07', '2024-10-13 02:04:07'),
+(3, 'VAT', '10.00', '2024-10-13 02:05:12', '2024-10-13 02:05:12'),
+(4, 'VAT', '10.00', '2024-10-13 02:06:58', '2024-10-13 02:06:58');
 
 -- --------------------------------------------------------
 
@@ -469,6 +601,12 @@ ALTER TABLE `category_posts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `classrooms`
+--
+ALTER TABLE `classrooms`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `customers`
 --
 ALTER TABLE `customers`
@@ -501,6 +639,12 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `passports`
+--
+ALTER TABLE `passports`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -528,6 +672,12 @@ ALTER TABLE `phones`
   ADD UNIQUE KEY `phones_user_id_unique` (`user_id`);
 
 --
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `projects`
 --
 ALTER TABLE `projects`
@@ -537,6 +687,18 @@ ALTER TABLE `projects`
 -- Indexes for table `sales`
 --
 ALTER TABLE `sales`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `students_subjects`
+--
+ALTER TABLE `students_subjects`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `subjects`
+--
+ALTER TABLE `subjects`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -570,6 +732,12 @@ ALTER TABLE `category_posts`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `classrooms`
+--
+ALTER TABLE `classrooms`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
@@ -579,7 +747,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -591,13 +759,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `financial_reports`
 --
 ALTER TABLE `financial_reports`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `passports`
+--
+ALTER TABLE `passports`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -609,7 +783,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `phones`
 --
 ALTER TABLE `phones`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `projects`
@@ -621,6 +801,18 @@ ALTER TABLE `projects`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `students_subjects`
+--
+ALTER TABLE `students_subjects`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `subjects`
+--
+ALTER TABLE `subjects`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -633,7 +825,7 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT for table `taxes`
 --
 ALTER TABLE `taxes`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`

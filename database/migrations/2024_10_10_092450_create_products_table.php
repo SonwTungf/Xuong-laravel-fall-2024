@@ -9,18 +9,18 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    // public function up()
-    // {
-    //     Schema::create('taxes', function (Blueprint $table) {
-    //         $table->bigIncrements('id');
-    //         $table->string('tax_name', 100);
-    //         $table->decimal('rate', 5, 2);
-    //         $table->timestamps();
-    //     });
-    // }
+    public function up()
+    {
+        Schema::create('products', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name', 255);
+            $table->decimal('price', 10, 2);
+            $table->timestamps();
+        });
+    }
 
     public function down()
     {
-        Schema::dropIfExists('taxes');
+        Schema::dropIfExists('products');
     }
 };
